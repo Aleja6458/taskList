@@ -16,6 +16,11 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiUrl);
   }
 
+  getFilteredTasks(isComplete: boolean): Observable<Task[]> {
+    const url = `${this.apiUrl}/filter?isComplete=${isComplete}`;
+    return this.http.get<Task[]>(url);
+  }
+
   getTasksUpdatedListener(): Observable<void> {
     return this.tasksUpdated.asObservable();
   }
@@ -73,10 +78,5 @@ export class TaskService {
   deleteTask(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
-  }
-
-  getFilteredTasks(isComplete: boolean): Observable<Task[]> {
-    const url = `${this.apiUrl}/filter?isComplete=${isComplete}`;
-    return this.http.get<Task[]>(url);
   }
 }

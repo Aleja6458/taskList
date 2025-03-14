@@ -9,8 +9,6 @@ import { Task } from '../models/task.model';
 })
 export class TaskListComponent implements OnInit  {
   public tasks: Task[] = [];
-  protected selectedTask: Task = { id: 0, name: '', description: '', iscomplete: false };
-  protected isEditMode = false;
 
   constructor(private taskService: TaskService, private cdRef: ChangeDetectorRef) { }
 
@@ -35,11 +33,6 @@ export class TaskListComponent implements OnInit  {
         this.cdRef.detectChanges();
       }
     });
-  }
-
-  public editTask(task: Task): void {
-    this.selectedTask = { ...task };
-    this.isEditMode = true;
   }
 
   public deleteTask(id: number): void {
