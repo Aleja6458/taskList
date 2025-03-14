@@ -1,0 +1,22 @@
+<h3>Agregar tarea</h3>
+<form (ngSubmit)="saveTask()" #taskForm="ngForm">
+  <div>
+    <label class="form-check-label">Titulo</label>
+    <input [(ngModel)]="task.name" class="form-control" name="name" placeholder="Titulo" required #name="ngModel">
+    <div *ngIf="name.invalid && name.touched" class="error">
+      El título es requerido.
+    </div>
+  </div>
+  <div>
+    <label class="form-check-label">Descripción</label>
+    <input [(ngModel)]="task.description" class="form-control" name="description" placeholder="Descripción" required #description="ngModel">
+    <div *ngIf="description.invalid && description.touched" class="error">
+      La descripción es requerida.
+    </div>
+  </div>
+  <div>
+    <input [(ngModel)]="task.iscomplete" class="form-check-input" type="checkbox" name="iscomplete">
+    <label class="form-check-label">Completada</label>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="taskForm.invalid"><i class="bi bi-plus"></i>Agregar</button>
+</form>
